@@ -1,20 +1,32 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
-
-// eslint-disable-next-line no-unused-vars
 const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+require("dotenv").config();
+
+const serviceAccountKey = require("./serviceAccountKey.json");
+
+const express = require("express");
+const app = express();
+
+app.use(express.json());
 
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+const cors = require("cors");
+app.use(cors({origin: true}));
+app.use((req, res, next) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  next();
+});
 
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+// firebase credentials
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccountKey),
+});
+
+app.get("/", (req, res) => {
+  return res.send("hello world");
+});
+
+const userRoute = require("./routes/user");
+app.use("/api/users", userRoute);
+
+exports.app = functions.https.onRequest(app);

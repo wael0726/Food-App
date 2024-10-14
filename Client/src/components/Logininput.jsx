@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 import {motion} from "framer-motion"
 import { fadeInOut } from '../animations';
 
-const Logininput = ({ placeholder, icon, inputState, inputStateFunc, type, isSignUp }) => {
+const Logininput = ({ 
+  placeholder, 
+  icon, 
+  inputState, 
+  inputStateFunc, 
+  type, 
+  isSignUp 
+}) => {
 
   const [isFocus, setIsFocus] = useState(false);
   return (
