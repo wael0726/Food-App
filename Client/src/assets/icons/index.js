@@ -15,9 +15,12 @@ import {
 import { IoFastFood, IoBasket } from "react-icons/io5";
 import { BiChevronsRight } from "react-icons/bi";
 import { HiCurrencyRupee } from "react-icons/hi2";
+import { FaDollarSign } from 'react-icons/fa';
+
 
 export {
   FaEnvelope,
+  FaDollarSign,
   FaLock,
   FcGoogle,
   MdShoppingCart,

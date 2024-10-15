@@ -26,7 +26,6 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
-  const alert = useSelector((state) => state.alert);
 
   // ENLEVER CA PCQ CA PUSH LE LOGIN DANS LE MAIN DIRECT DONC JE PEUT PAS AVOIR ACCES AU LOGIN ET TESTER
   useEffect(() => {
