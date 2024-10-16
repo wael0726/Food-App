@@ -21,7 +21,7 @@ const DBNewItem = () => {
   const [itemName, setItemName] = useState("");
   const [price, setPrice] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [progress, setProgress] = useState(0); // Par défaut, initialisez à 0
+  const [progress, setProgress] = useState(0); 
   const [category, setCategory] = useState(null);
   const [imageDownloadURL, setimageDownloadURL] = useState(null);
   const alert = useSelector((state) => state.alert);

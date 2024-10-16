@@ -27,7 +27,7 @@ const Header = () => {
         .catch((err) => console.log(err));
     }
     return (
-        <header className='fixed backdrop-blur-md z-50 inset-x-0 top-0 flex items-center justify-between px-12 md:px-20 py-6'>
+        <header className='fixed backdrop-blur-md z-50 inset-x-0 top-0 flex items-center justify-between px-12 md:px-20 py-6 bg-green-50'>
             <NavLink to={"/"} className={"flex items-center justify-center gap-4"}>
                 <img src={imgLogo} className='w-12' alt="" />
                 <p className='font-semibold text-xl'>Kapelka</p>
@@ -62,7 +62,7 @@ const Header = () => {
                             </div>
 
                             {isMenu && (
-                                <motion.div {...slideTop} onMouseLeave={() => setIsMenu(false)} className='px-6 py-4 w-48 bg-LightOverlay backdrop-blur-md rounded-md shadow-md absolute top-12 right-0 flex-col gap-8'>
+                                <motion.div {...slideTop} onMouseLeave={() => setIsMenu(false)} className='px-6 py-4 w-48 bg-LightOverlay backdrop-blur-md rounded-md shadow-md absolute top-16 right-0 flex-col gap-8'>
                                 <Link className="hover:text-red-500 text-xl text-textColor block py-1" to={"/dashboard/home"}>
                                     Dashboard
                                 </Link>

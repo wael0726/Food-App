@@ -12,7 +12,14 @@ const DBUsers = () => {
   useEffect(() => {
     if (!allUsers || allUsers.length === 0) {
       getAllUsers().then((data) => {
-        dispatch(setAllUserDetails(data));
+        // Filtrer les doublons par 'uid'
+        const uniqueUsers = Array.from(new Set(data.map(user => user.uid)))
+          .map(uid => {
+            return data.find(user => user.uid === uid);
+          });
+
+        // Dispatcher les utilisateurs uniques
+        dispatch(setAllUserDetails(uniqueUsers));
       });
     }
   }, [allUsers, dispatch]);
@@ -28,7 +35,7 @@ const DBUsers = () => {
               <img
                 src={rowData.photoURL ? rowData.photoURL : avatar}
                 className='w-32 h-16 object-contain rounded-md'
-                alt="User Avatar" // Ajoutez un alt pour l'accessibilité
+                alt="User Avatar"
               />
             ),
           },
@@ -42,7 +49,7 @@ const DBUsers = () => {
           },
           {
             title: "Verified",
-            field: "emailVerified", // Changement de field pour correspondre à l'état
+            field: "emailVerified",
             render: (rowData) => (
               <p
                 className={`px-2 py-1 w-32 text-center text-primary rounded-md ${
@@ -54,7 +61,7 @@ const DBUsers = () => {
             ),
           },
         ]}
-        data={allUsers}
+        data={allUsers || []} 
         title={"List of Users"}
       />
     </div>
