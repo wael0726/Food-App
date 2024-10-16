@@ -51,3 +51,29 @@ export const getAllUsers = async () => {
         return null;
     }
 };
+
+export const addNewItemToCart = async (user_id, data) => {
+    try {
+        const res = await axios.post(
+            `${baseURL}/api/products/addToCart/${user_id}`,
+            {...data}
+        );
+        return res.data.data;
+    } catch (error) {
+        return null;
+    }
+};
+
+export const getAllCartItems = async (user_id) => {
+    try {
+        const res = await axios.get(
+            `${baseURL}/api/products/getCartItems/${user_id}`
+        );
+        return res.data.data;
+    } catch (error) {
+        return null;
+    }
+};
+
+
+
