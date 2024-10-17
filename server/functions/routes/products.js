@@ -105,7 +105,7 @@ router.get("/getCartItems/:user_id", async (req, res) => {
         let query = db
           .collection("cartItems")
           .doc(`/${userId}/`)
-          .collection("items");
+          .collection("Items");
         let response = [];
   
         await query.get().then((querysnap) => {
@@ -123,8 +123,8 @@ router.get("/getCartItems/:user_id", async (req, res) => {
     })();
   });
 
-// update cart to increase and decrease the quantity
-router.post("/updateCart/:user_id", async (req, res) => {
+
+  router.post("/updateCart/:user_id", async (req, res) => {
     const userId = req.params.user_id;
     const productId = req.query.productId;
     const type = req.query.type;
@@ -133,7 +133,7 @@ router.post("/updateCart/:user_id", async (req, res) => {
       const doc = await db
         .collection("cartItems")
         .doc(`/${userId}/`)
-        .collection("items")
+        .collection("Items")
         .doc(`/${productId}/`)
         .get();
   
@@ -143,7 +143,7 @@ router.post("/updateCart/:user_id", async (req, res) => {
           const updatedItem = await db
             .collection("cartItems")
             .doc(`/${userId}/`)
-            .collection("items")
+            .collection("Items")
             .doc(`/${productId}/`)
             .update({ quantity });
           return res.status(200).send({ success: true, data: updatedItem });
@@ -152,7 +152,7 @@ router.post("/updateCart/:user_id", async (req, res) => {
             await db
               .collection("cartItems")
               .doc(`/${userId}/`)
-              .collection("items")
+              .collection("Items")
               .doc(`/${productId}/`)
               .delete()
               .then((result) => {
@@ -163,7 +163,7 @@ router.post("/updateCart/:user_id", async (req, res) => {
             const updatedItem = await db
               .collection("cartItems")
               .doc(`/${userId}/`)
-              .collection("items")
+              .collection("Items")
               .doc(`/${productId}/`)
               .update({ quantity });
             return res.status(200).send({ success: true, data: updatedItem });

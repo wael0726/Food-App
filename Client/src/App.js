@@ -23,24 +23,29 @@ const App = () => {
   useEffect(() => {
     setIsLoading(true);
     firebaseAuth.onAuthStateChanged((cred) => {
-      if(cred) {
+      if (cred) {
         cred.getIdToken().then((token) => {
           validateUserJWTToken(token).then((data) => {
             if (data) {
+              // Correction : Assurez-vous de bien récupérer les items ici
               getAllCartItems(data.user_id).then((items) => {
-                console.log(items);
-                dispatch(setCartItems(items));
+                console.log("items from database", items)
+                if (items && items.length > 0) {
+                  dispatch(setCartItems(items)); // Dispatch les articles récupérés
+                  console.log("items from database", items)
+                } else {
+                  dispatch(setCartItems([])); // Au cas où il n'y aurait pas d'items
+                }
               });
             }
             dispatch(setUserDetails(data));
           });
         });
-      } 
-      setInterval(() => {
-        setIsLoading(false);
-      }, 3000); 
+      }
+      setIsLoading(false); // Déplacer en dehors du bloc conditionnel
     });
   }, [firebaseAuth, dispatch]);
+  
 
   return (
     <div className='w-screen min-h-screen h-auto flex flex-col items-center justify-center'>

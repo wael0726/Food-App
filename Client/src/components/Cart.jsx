@@ -18,7 +18,6 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
   const [total, setTotal] = useState(0);
-  
 
   useEffect(() => {
     let tot = 0;

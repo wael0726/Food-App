@@ -13,18 +13,23 @@ const SliderCard = ({ data }) => {
 
   const sendToCart = () => {
     addNewItemToCart(user?.user_id, data).then((res) => {
-        dispatch(alertSuccess("Added to the cart"));
-        getAllCartItems(user?.user_id).then((items) => {
-          dispatch(setCartItems(items));
-        });
-        setTimeout(() => {
-          dispatch(alertNull());
-        }, 3000);
-      })
-      .catch((err) => {
-        console.error("Erreur lors de l'ajout au panier", err);
+      dispatch(alertSuccess("Added to the cart"));
+      
+      // Récupérer les articles mis à jour
+      getAllCartItems(user?.user_id).then((items) => {
+        if (items) {
+          dispatch(setCartItems(items)); // Assurez-vous que les articles soient dispatchés
+        }
       });
+      setTimeout(() => {
+        dispatch(alertNull());
+      }, 3000);
+    })
+    .catch((err) => {
+      console.error("Erreur lors de l'ajout au panier", err);
+    });
   };
+  
 
   return (
     <div className='bg-white hover:bg-gray-200 hover:drop-shadow-lg backdrop-blur-md
