@@ -67,9 +67,11 @@ const Header = () => {
 
                             {isMenu && (
                                 <motion.div {...slideTop} onMouseLeave={() => setIsMenu(false)} className='px-6 py-4 w-48 bg-LightOverlay backdrop-blur-md rounded-md shadow-md absolute top-16 right-0 flex-col gap-8'>
-                                <Link className="hover:text-red-500 text-xl text-textColor block py-1" to={"/dashboard/home"}>
+                                {user?.user_id === process.env.REACT_APP_ADMIN_ID && (
+                                    <Link className="hover:text-red-500 text-xl text-textColor block py-1" to={"/dashboard/home"}>
                                     Dashboard
                                 </Link>
+                                )}
                                 <Link className="hover:text-red-500 text-xl text-textColor block py-1" to={"/profile"}>
                                     My Profile
                                 </Link>

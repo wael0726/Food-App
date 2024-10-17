@@ -20,3 +20,5 @@ export {default as SliderCard} from "./SliderCard";
 export {default as FilterSection} from "./FilterSection";
 export {default as Cart} from "./Cart";
 export {default as CheckOutSuccess} from "./CheckOutSuccess";
+export {default as OrderData} from "./OrderData";
+export {default as UsersOrder} from "./UsersOrder";
