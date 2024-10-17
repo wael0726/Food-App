@@ -8,6 +8,6 @@ const Dashboard = () => {
         <DBRightSection />
     </div>
   )
-}
+};
 
 export default Dashboard

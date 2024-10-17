@@ -7,3 +7,4 @@ export { default as Burger } from "./images/Burger.webp";
 export { default as GreekSalad } from "./images/GreekSalad.png";
 export { default as BurgerEtage } from "./images/BurgerEtage.png";
 export { default as ImgHomeBurger3 } from "./images/ImgHomeBurger3.png";
+export { default as bill } from "./images/bill.jpg";

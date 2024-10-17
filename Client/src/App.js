@@ -10,7 +10,7 @@ import { getAllCartItems, validateUserJWTToken } from './api';
 import { setUserDetails } from './context/actions/userActions';
 import { fadeInOut } from './animations';
 import { motion } from 'framer-motion';
-import { Alert, MainLoader } from './components';
+import { Alert, MainLoader, CheckOutSuccess } from './components';
 import { setCartItems } from './context/actions/cartAction';
 
 const App = () => {
@@ -27,14 +27,13 @@ const App = () => {
         cred.getIdToken().then((token) => {
           validateUserJWTToken(token).then((data) => {
             if (data) {
-              // Correction : Assurez-vous de bien récupérer les items ici
               getAllCartItems(data.user_id).then((items) => {
                 console.log("items from database", items)
                 if (items && items.length > 0) {
-                  dispatch(setCartItems(items)); // Dispatch les articles récupérés
+                  dispatch(setCartItems(items)); 
                   console.log("items from database", items)
                 } else {
-                  dispatch(setCartItems([])); // Au cas où il n'y aurait pas d'items
+                  dispatch(setCartItems([]));
                 }
               });
             }
@@ -42,7 +41,7 @@ const App = () => {
           });
         });
       }
-      setIsLoading(false); // Déplacer en dehors du bloc conditionnel
+      setIsLoading(false);
     });
   }, [firebaseAuth, dispatch]);
   
@@ -62,6 +61,7 @@ const App = () => {
         <Route path="*" element={<Main />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Dashboard/*" element={<Dashboard />} />
+        <Route path="/checkout-success" element={<CheckOutSuccess />} />
       </Routes>
 
       {alert?.type && <Alert type={alert?.type} message={alert?.message} />}
