@@ -4,7 +4,7 @@ import { Logininput } from "../components";
 import { FaEnvelope, FaLock, FcGoogle } from "../assets/icons";
 import { motion } from "framer-motion";
 import { buttonclick, fadeInOut } from "../animations";
-import {getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth";
+import {getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, getIdToken} from "firebase/auth";
 import {app} from "../config/firebase.config";
 import { validateUserJWTToken } from "../api";
 import {useNavigate} from "react-router-dom";
@@ -42,6 +42,7 @@ const Login = () => {
           cred.getIdToken().then((token) => {
             validateUserJWTToken(token).then((data) => {
               dispatch(setUserDetails(data));
+              console.log(token)
             });
             navigate("/", { replace: true });
           });        

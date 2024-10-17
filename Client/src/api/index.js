@@ -76,4 +76,16 @@ export const getAllCartItems = async (user_id) => {
 };
 
 
-
+export const increaseItemQuantity = async (user_id, productId, type) => {
+    console.log(user_id, productId, type);
+    try {
+      const res = await axios.post(
+        `${baseURL}/api/products/updateCart/${user_id}`,
+        null,
+        { params: { productId: productId, type: type } }
+      );
+      return res.data.data;
+    } catch (error) {
+      return null;
+    }
+  };

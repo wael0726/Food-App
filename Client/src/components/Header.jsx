@@ -9,10 +9,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAuth } from 'firebase/auth';
 import { app } from '../config/firebase.config';
 import { setUserNull } from '../context/actions/userActions';
+import {setCartOn} from "../context/actions/displayCartAction"
 
 
 const Header = () => {
-
+    const cart = useSelector((state) => state.cart)
     const user = useSelector((state) => state.user);
     const [isMenu, setIsMenu] = useState(false);
     const firebaseAuth = getAuth(app);
@@ -40,11 +41,14 @@ const Header = () => {
                     <NavLink className={({ isActive }) => (isActive ? isActiveStyles : isNotActiveStyles)} to={"/services"}>Services</NavLink>
                     <NavLink className={({ isActive }) => (isActive ? isActiveStyles : isNotActiveStyles)} to={"/aboutus"}>About Us</NavLink>
                 </ul>
-                <motion.div {...buttonclick} className='relative cursor-pointer'>
+                <motion.div {...buttonclick} onClick={() => dispatch(setCartOn())} 
+                className='relative cursor-pointer'>
                     <MdShoppingCart className='text-3xl text-textColor' />
-                    <div className='w-6 h-6 rounded-full bg-red-500 flex items-center justify-center absolute -top-4 -right-1'>
-                        <p className='text-primary text-base font-semibold'>2</p>
+                    {cart?.lenght > 1 && (
+                        <div className='w-6 h-6 rounded-full bg-red-500 flex items-center justify-center absolute -top-4 -right-1'>
+                        <p className='text-primary text-base font-semibold'>{cart?.lenght}</p>
                     </div>
+                    )}
                 </motion.div>
 
                 {user ? ( 

@@ -123,7 +123,57 @@ router.get("/getCartItems/:user_id", async (req, res) => {
     })();
   });
 
-
+// update cart to increase and decrease the quantity
+router.post("/updateCart/:user_id", async (req, res) => {
+    const userId = req.params.user_id;
+    const productId = req.query.productId;
+    const type = req.query.type;
+  
+    try {
+      const doc = await db
+        .collection("cartItems")
+        .doc(`/${userId}/`)
+        .collection("items")
+        .doc(`/${productId}/`)
+        .get();
+  
+      if (doc.data()) {
+        if (type === "increment") {
+          const quantity = doc.data().quantity + 1;
+          const updatedItem = await db
+            .collection("cartItems")
+            .doc(`/${userId}/`)
+            .collection("items")
+            .doc(`/${productId}/`)
+            .update({ quantity });
+          return res.status(200).send({ success: true, data: updatedItem });
+        } else {
+          if (doc.data().quantity === 1) {
+            await db
+              .collection("cartItems")
+              .doc(`/${userId}/`)
+              .collection("items")
+              .doc(`/${productId}/`)
+              .delete()
+              .then((result) => {
+                return res.status(200).send({ success: true, data: result });
+              });
+          } else {
+            const quantity = doc.data().quantity - 1;
+            const updatedItem = await db
+              .collection("cartItems")
+              .doc(`/${userId}/`)
+              .collection("items")
+              .doc(`/${productId}/`)
+              .update({ quantity });
+            return res.status(200).send({ success: true, data: updatedItem });
+          }
+        }
+      }
+    } catch (err) {
+      return res.send({ success: false, msg: `Error :${err}` });
+    }
+  });
   
 
 module.exports = router;
