@@ -1,5 +1,7 @@
 > Fullstack Food App Delivery using React.js
 
+![Kapelka Restaurant](images/KapelkaImg.PNG)
+
 # To check the node version
 
 ```
