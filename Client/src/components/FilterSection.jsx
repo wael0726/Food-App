@@ -19,7 +19,7 @@ const FilterSection = () => {
         <div className="w-40 h-1 rounded-md bg-green-800 mt-2"></div>
       </div>
       {/*Changer overflow-x-hidden pour overflow-x-scroll si je veux barre en dessous des cartes*/}
-      <div className='w-full overflow-x-hidden pt-6 flex items-center justify-center gap-6 py-8'>
+      <div className='w-full overflow-x-hidden overflow-y-hidden pt-6 flex items-center justify-center gap-6 py-8'>
         {statuses && 
         statuses.map((data, i) => (
           <FilterCard 

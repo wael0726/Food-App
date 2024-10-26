@@ -54,6 +54,21 @@ router.delete("/delete/:productId", async (req, res) => {
     }
 });
 
+router.put('/update/:id', async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const updatedData = req.body;
+
+    const productRef = db.collection('products').doc(productId);
+    await productRef.update(updatedData);
+
+    res.status(200).send({ success: true, data: updatedData });
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour du produit:', error);
+    res.status(500).send({ success: false, message: 'Échec de la mise à jour', error: error.message });
+  }
+});
+
 
 router.post("/addToCart/:userId", async (req, res) => {
     const userId = req.params.userId;

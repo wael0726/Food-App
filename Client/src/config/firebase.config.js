@@ -1,6 +1,7 @@
 import {getApp, getApps, initializeApp} from "firebase/app"
 import {getStorage} from "firebase/storage"
 import { getFirestore } from "firebase/firestore";
+import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -14,5 +15,11 @@ const firebaseConfig = {
   const app = getApps.length > 0 ? getApp() : initializeApp(firebaseConfig);
   const firestore = getFirestore(app); 
   const storage = getStorage(app);
+  const fbAuthProvider = new FacebookAuthProvider();
+
+export const FacebookAuth = async () => {
+  const fbAuth = signInWithPopup(fbAuthProvider);
+  return fbAuth;
+}
 
   export {app, storage, firestore};
