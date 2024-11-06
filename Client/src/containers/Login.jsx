@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { imgbg, imgLogo } from "../assets";
 import { Logininput } from "../components";
-import { FaEnvelope, FaLock, FcGoogle, FaFacebook } from "../assets/icons";
+import { FaEnvelope, FaLock, FcGoogle, FaFacebook, FaUser} from "../assets/icons";
 import { motion } from "framer-motion";
 import { buttonclick, fadeInOut } from "../animations";
 import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
@@ -11,32 +11,41 @@ import { useNavigate } from "react-router-dom";
 import { setUserDetails } from "../context/actions/userActions";
 import { useDispatch, useSelector } from 'react-redux';
 import { alertInfo, alertWarning } from "../context/actions/alertActions";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Login = () => {
   const [userEmail, setUserEmail] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmationPassword, setConfirmationPassword] = useState("");
+  const [username, setUsername] = useState(""); // Nouveau champ
+  const [birthDate, setBirthDate] = useState(""); // Nouveau champ
+  const [gender, setGender] = useState(""); // Nouveau champ
+  const [profileImage, setProfileImage] = useState(null); // Nouveau champ
+  const [recaptchaValue, setRecaptchaValue] = useState(null);
 
   const firebaseAuth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
-  const facebookProvider = new FacebookAuthProvider(); // Use FacebookAuthProvider
+  const facebookProvider = new FacebookAuthProvider(); 
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
 
+  const handleRecaptchaChange = (value) => {
+    setRecaptchaValue(value); 
+  };
+
   const FacebookAuthButtonClicked = async () => {
     try {
-      const userCred = await signInWithPopup(firebaseAuth, facebookProvider); // Use the correct provider
+      const userCred = await signInWithPopup(firebaseAuth, facebookProvider); 
       const token = await userCred.user.getIdToken();
       const userData = await validateUserJWTToken(token);
       dispatch(setUserDetails(userData));
       navigate("/", { replace: true });
     } catch (error) {
       console.error("Error signing in with Facebook:", error);
-      // Handle error (e.g., show a notification)
     }
   };
 
@@ -127,6 +136,16 @@ const Login = () => {
 
         {/* Input section */}
         <div className="w-full flex flex-col items-center justify-center gap-6 px-4 md:px-12 py-4">
+          {isSignUp && (
+            <Logininput
+              placeholder={"Username"}
+              icon={<FaUser className="text-xl text-textColor" />}
+              inputState={username}
+              inputStateFunc={setUsername}
+              type="text"
+            />
+          )}
+
           <Logininput
             placeholder={"Email Here"}
             icon={<FaEnvelope className="text-xl text-textColor" />}
@@ -146,14 +165,44 @@ const Login = () => {
           />
 
           {isSignUp && (
-            <Logininput
-              placeholder={"Please confirm your password"}
-              icon={<FaLock className="text-xl text-textColor" />}
-              inputState={confirmationPassword}
-              inputStateFunc={setConfirmationPassword}
-              type="password"
-              isSignUp={isSignUp}
+            <>
+              <Logininput
+                placeholder={"Please confirm your password"}
+                icon={<FaLock className="text-xl text-textColor" />}
+                inputState={confirmationPassword}
+                inputStateFunc={setConfirmationPassword}
+                type="password"
+              />
+              <Logininput
+                type="date"
+                value={birthDate}
+                onChange={(e) => setBirthDate(e.target.value)}
+                className="w-full p-2 border border-gray-400 rounded-md"
+                placeholder="Date of Birth"
+              />
+              <select
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+                className="w-full p-2 border border-gray-400 rounded-md"
+              >
+                <option value="" disabled>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+              <Logininput
+                type="file"
+                onChange={(e) => setProfileImage(e.target.files[0])}
+                className="w-full p-2 border border-gray-400 rounded-md"
+              />
+              {/* reCAPTCHA Button */}
+          <div className="w-full">
+            <ReCAPTCHA
+              sitekey="6LeETXcqAAAAAO3T-wpHas0v59S0sIfkCos2Ybke" 
+              onChange={handleRecaptchaChange}
             />
+          </div>
+            </>
           )}
 
           {isSignUp ? (
@@ -210,21 +259,25 @@ const Login = () => {
         <motion.div
           {...buttonclick}
           {...fadeInOut}
-          className="flex items-center justify-center px-20 py-2 bg-lightOverlay backdrop-blur-md cursor-pointer rounded-3xl gap-8 mt-6"
+          className="flex items-center justify-center px-20 py-2 bg-lightOverlay backdrop-blur-md cursor-pointer rounded-3xl gap-4 mt-5"
           onClick={loginWithGoogle}
         >
           <FcGoogle className="text-3xl" />
-          <p className="capitalize text-base text-headingColor"> Sign In with Google</p>
+          <p className="capitalize text-base text-headingColor">
+            Sign-in with Google
+          </p>
         </motion.div>
 
         <motion.div
           {...buttonclick}
           {...fadeInOut}
-          className="flex items-center justify-center px-20 py-2 bg-lightOverlay backdrop-blur-md cursor-pointer rounded-3xl gap-8 mt-6"
+          className="flex items-center justify-center px-20 py-2 bg-blue-500 backdrop-blur-md cursor-pointer rounded-3xl gap-4 mt-5"
           onClick={FacebookAuthButtonClicked}
         >
-          <FaFacebook className="text-3xl" />
-          <p className="capitalize text-base text-headingColor"> Sign In with FaceBook</p>
+          <FaFacebook className="text-3xl text-white" />
+          <p className="capitalize text-base text-headingColor">
+            Sign-in with Facebook
+          </p>
         </motion.div>
       </div>
     </div>

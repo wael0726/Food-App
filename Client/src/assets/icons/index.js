@@ -5,6 +5,8 @@ import {
   FaCheck,
   FaArrowLeft,
   FaFacebook,
+  FaCalendarAlt, 
+  FaVenusMars,
 } from "react-icons/fa";
 import { FcGoogle, FcClearFilters } from "react-icons/fc";
 import { MdShoppingCart, MdLogout, MdSearch, MdDelete } from "react-icons/md";
@@ -22,6 +24,8 @@ import { FaUser } from "react-icons/fa";
 
 export {
   FaEnvelope,
+  FaCalendarAlt,
+  FaVenusMars,
   FaUser,
   FaDollarSign,
   FaFacebook,
