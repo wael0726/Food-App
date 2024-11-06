@@ -198,7 +198,7 @@ const Login = () => {
               {/* reCAPTCHA Button */}
           <div className="w-full">
             <ReCAPTCHA
-              sitekey="6LeETXcqAAAAAO3T-wpHas0v59S0sIfkCos2Ybke" 
+              sitekey="6LcaUncqAAAAAPPda7l8UKdkZgIHtTJ3yAicMQeB" 
               onChange={handleRecaptchaChange}
             />
           </div>
