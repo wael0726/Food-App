@@ -10,7 +10,7 @@ export const statuses = [
   { id : 2, title : "Deserts", category : "deserts" },
   { id : 3, title : "Burgers", category : "burgers" },
   { id : 4, title : "Rice", category : "rice" },
-  { id : 5, title : "Curry", category : "curry" },
-  { id : 6, title : "Chinese", category : "chinese" },
-  { id : 7, title : "Bread", category : "bread" },
+  { id : 5, title : "Pizza", category : "pizza" },
+  { id : 6, title : "Kebabs", category : "kebabs" },
+  { id : 7, title : "Soup", category : "soup" },
 ];

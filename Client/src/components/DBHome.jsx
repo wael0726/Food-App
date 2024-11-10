@@ -13,9 +13,9 @@ const DBHome = () => {
   const deserts = products?.filter(item => item.product_category === "deserts");
   const burgers = products?.filter(item => item.product_category === "burgers");
   const rice = products?.filter(item => item.product_category === "rice");
-  const curry = products?.filter(item => item.product_category === "curry");
-  const chinese = products?.filter(item => item.product_category === "chinese");
-  const bread = products?.filter(item => item.product_category === "bread");
+  const pizza = products?.filter(item => item.product_category === "pizza");
+  const kebabs = products?.filter(item => item.product_category === "kebabs");
+  const soup = products?.filter(item => item.product_category === "soup");
 
   useEffect(() => {
     if (!products) {
@@ -66,9 +66,9 @@ const DBHome = () => {
                   'deserts', 
                   'burgers', 
                   'rice', 
-                  'curry', 
-                  'chinese', 
-                  'bread'],
+                  'pizza', 
+                  'kebabs', 
+                  'soup'],
                 datasets: [
                   {
                     label: 'Category Count',
@@ -78,9 +78,9 @@ const DBHome = () => {
                       deserts?.length,
                       burgers?.length,
                       rice?.length,
-                      curry?.length,
-                      chinese?.length,
-                      bread?.length,
+                      pizza?.length,
+                      kebabs?.length,
+                      soup?.length,
                     ],
                   },
                 ],

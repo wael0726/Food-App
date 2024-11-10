@@ -103,7 +103,7 @@ const DBNewItem = () => {
         stateValue={itemName}
         />
 
-        <div className='w-full flex items-center justify-around gap-3 
+        <div className='w-full flex items-center justify-around gap-1 
         flex-wrap'>
           {statuses && 
           statuses.map((data) => {
@@ -112,7 +112,7 @@ const DBNewItem = () => {
             key={data.id} 
             onClick={() => setCategory(data.category)}
             className={`px-4 py-3 rounded-md text-xl text-textColor font-semibold
-              cursor-pointer hover:shadow-md border border-gray-200 backdrop-blur-md ${data.category === category 
+              cursor-pointer hover:shadow-md border border-gray-200 backdrop-blur-md gap-1 ${data.category === category 
                 ? "bg-green-900 text-white"
                 : "bg-transparent"
               }`}

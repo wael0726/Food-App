@@ -19,9 +19,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [confirmationPassword, setConfirmationPassword] = useState("");
   const [username, setUsername] = useState(""); // Nouveau champ
-  const [birthDate, setBirthDate] = useState(""); // Nouveau champ
-  const [gender, setGender] = useState(""); // Nouveau champ
-  const [profileImage, setProfileImage] = useState(null); // Nouveau champ
   const [recaptchaValue, setRecaptchaValue] = useState(null);
 
   const firebaseAuth = getAuth(app);
@@ -172,28 +169,6 @@ const Login = () => {
                 inputState={confirmationPassword}
                 inputStateFunc={setConfirmationPassword}
                 type="password"
-              />
-              <Logininput
-                type="date"
-                value={birthDate}
-                onChange={(e) => setBirthDate(e.target.value)}
-                className="w-full p-2 border border-gray-400 rounded-md"
-                placeholder="Date of Birth"
-              />
-              <select
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-                className="w-full p-2 border border-gray-400 rounded-md"
-              >
-                <option value="" disabled>Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
-              <Logininput
-                type="file"
-                onChange={(e) => setProfileImage(e.target.files[0])}
-                className="w-full p-2 border border-gray-400 rounded-md"
               />
               {/* reCAPTCHA Button */}
           <div className="w-full">
