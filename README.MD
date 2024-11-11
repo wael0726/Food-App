@@ -1,4 +1,4 @@
-> Fullstack Food App Delivery using React.js
+# This repository contains the Food-App, a full-featured application designed for restaurant management, featuring a user dashboard, product management, order handling, and more.
 
 ![Kapelka Restaurant](KapelkaImg.PNG)
 
@@ -17,22 +17,31 @@ firebase init
 # To start the server
 
 ```
-npm run server
+npm run serve
 ```
 
-# To create a react project using npm and yarn
+# To test the app, go to the Home page and refresh after every modification. All functionalities are accessible in the Dashboard.
+
+# Steps to Launch the App
 
 ```
-npm create-react-app folder_name
+1. cd Food-App
+2. cd server
+3. npm install firebase-tools --save-dev
+4. cd functions
+5. npm install
+6. npm run serve
 ```
 
-```
-yarn create react-app folder_name
-```
+# Start the Client
 
-# To start the client
+# Open a second terminal and run the following commands:
 
 ```
+cd Food-App
+cd Client
+rm yarn.lock
+yarn install
 yarn start
 ```
 

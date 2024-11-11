@@ -23,6 +23,7 @@ export const addNewProduct = async (data) => {
     } 
 };
 
+
 // get all products
 export const getAllProducts = async () => {
     try {
