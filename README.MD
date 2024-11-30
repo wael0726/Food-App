@@ -1,28 +1,28 @@
-# This repository contains the Food-App, a full-featured application designed for restaurant management, featuring a user dashboard, product management, order handling, and more.
+Ce référentiel contient l’application Food-App, une application complète conçue pour la gestion des restaurants, avec un tableau de bord utilisateur, une gestion des produits, la gestion des commandes, etc.
 
 ![Kapelka Restaurant](KapelkaImg.PNG)
 
-# To check the node version
+# Pour vérifier la version du node
 
 ```
 node --verion
 ```
 
-# To initialize the Firebase Console
+# Pour initialiser la console Firebase
 
 ```
 firebase init
 ```
 
-# To start the server
+# Pour démarrer le serveur
 
 ```
 npm run serve
 ```
 
-# To test the app, go to the Home page and refresh after every modification. All functionalities are accessible in the Dashboard.
+# Pour tester l’application, accédez à la page d’accueil et actualisez-la après chaque modification. Toutes les fonctionnalités sont accessibles dans le tableau de bord.
 
-# Steps to Launch the App
+# Étapes pour lancer l’application
 
 ```
 1. cd Food-App
@@ -33,9 +33,9 @@ npm run serve
 6. npm run serve
 ```
 
-# Start the Client
+# Démarrer le coté client
 
-# Open a second terminal and run the following commands:
+# Ouvrez un deuxième terminal et exécutez les commandes suivantes :
 
 ```
 cd Food-App
@@ -48,12 +48,14 @@ yarn start
 # Package used
 
 <!-- prettier-ignore -->
-| Name            | Links  | Description |
-| --------------- | ------ | ----------- |
-| ReactJs         | [React](https://reactjs.org/) | React is a free and open-source front-end JavaScript library for building user interfaces based on UI components. |
-| Tailwind CSS    | [TailwindCSS](https://tailwindcss.com/) | TailwindCSS is a framework like no other. Rather than constraining you to a set design, it gives you the tools and the standardization to build exactly what you want. |
-| Firebase Functions | [Functions](https://firebase.google.com/docs/functions) | Cloud Functions for Firebase is a serverless framework that lets you automatically run backend code in response to events triggered by Firebase features. |
-| Express         | [Express](https://expressjs.com/) | Express.js, or simply Express, is a back-end web application framework for Node.js, released as free and open-source software under the MIT License. It is designed for building web applications and APIs. |
+Nom	Liens	Description
+ReactJs	React	Bibliothèque JavaScript pour créer des interfaces utilisateur basées sur des composants.
+Tailwind CSS	TailwindCSS	Framework CSS utilitaire qui permet de concevoir rapidement des interfaces flexibles et personnalisées.
+Firebase Functions	Functions	Framework sans serveur permettant d'exécuter automatiquement du code backend en réponse à des événements Firebase.
+Express	Express	Framework d'application web backend pour Node.js, utilisé pour créer des API ou des applications web robustes.
+React Router Dom	ReactRouterDom	Permet d'implémenter un routage dynamique dans une application web.
+Framer Motion	FramerMotion	Bibliothèque d'animations React, permettant de créer des transitions fluides et modernes.
+React Icons	ReactIcons	Collection d'icônes populaires regroupées dans un seul package pour une utilisation facile dans React.
 | React Router Dom | [ReactRouterDom](https://reactrouter.com/en/main) | React Router DOM is an npm package that enables you to implement dynamic routing in a web app. It allows you to display pages and allows users to navigate them. |
 | Framer Motion   | [FramerMotion](https://www.framer.com/motion/) | A production-ready motion library for React. Utilize the power behind Framer, the best prototyping tool for teams. Proudly open source. |
 | React Icons     | [ReactIcons](https://react-icons.github.io/react-icons/) | All Popular Icons in a single package. |
