@@ -1,6 +1,8 @@
 Ce référentiel contient l’application Food-App, une application complète conçue pour la gestion des restaurants, avec un tableau de bord utilisateur, une gestion des produits, la gestion des commandes, etc.
 
 ![Kapelka Restaurant](KapelkaImg.PNG)
+![Kapelka Restaurant](chk.PNG)
+![Kapelka Restaurant](stripe.PNG)
 
 
 # Pour vérifier la version du node
