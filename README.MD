@@ -2,6 +2,7 @@ Ce référentiel contient l’application Food-App, une application complète co
 
 ![Kapelka Restaurant](resto.PNG)
 ![Kapelka Restaurant](stripe.PNG)
+resto.png
 
 
 # Pour vérifier la version du node
